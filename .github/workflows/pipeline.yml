@@ -42,5 +42,5 @@ jobs:
         env :
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           WITH_V: false
-      - run : echo ${ {github.event_name} }
-      - run : echo ${ {github.head_ref} }
+      - run : echo "${{github.event_name}}"
+      - run : echo "${{github.head_ref  }}"
