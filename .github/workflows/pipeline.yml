@@ -34,12 +34,16 @@ jobs:
           path: playwright-report/
           retention-days: 30
   tag_release:
-    if : ${{ github.event_name == 'push' } && {github.head_ref == 'main'}}
+    when :
+      - github.event_name == 'push'
+      - github.head_ref == 'main'
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-24.04
     steps:
       - uses : anothrNick/github-tag-action@v1
-        if : ${{ github.event_name == 'push' } && {github.head_ref == 'main'}}
+        when :
+          - github.event_name == 'push'
+          - github.head_ref == 'main'
         env :
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
           WITH_V: false
