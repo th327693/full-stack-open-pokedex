@@ -34,6 +34,7 @@ jobs:
           path: playwright-report/
           retention-days: 30
   tag_release:
+    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-24.04
     steps:
