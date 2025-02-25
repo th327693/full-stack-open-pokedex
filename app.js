@@ -13,6 +13,7 @@ const gitCommand = 'git rev-parse HEAD'
 const childOutput = execSync(gitCommand)
 const commit_hash = childOutput.toString().trim()
 app.get('/version', async (req, res) => {
+  console.log('deliberately error')
   res.send('commit:'.concat(commit_hash))
 })
 
