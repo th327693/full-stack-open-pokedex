@@ -37,7 +37,7 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-24.04
     steps:
-      - uses : anothrNick/github-tag-action@v1
+      - uses : anothrNick/github-tag-action@1.64.0
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
         env :
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
