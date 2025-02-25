@@ -10,8 +10,8 @@ const gitCommand = 'git rev-parse HEAD'
 
 
 
-const childOut = execSync(gitCommand)
-const commit_hash = childOut.toString().trim()
+const childOutput = execSync(gitCommand)
+const commit_hash = childOutput.toString().trim()
 app.get('/version', async (req, res) => {
   res.send('commit:'.concat(commit_hash))
 })
