@@ -8,7 +8,7 @@ on:
     branches: [main]
     types: [opened, synchronize]
 jobs:
-   simple_deployment_pipeline:
+  simple_deployment_pipeline:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -33,3 +33,14 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses : anothrNick/github-tag-action@v1
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        env :
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          WITH_V: false
+      - run : echo "${{github.event_name}}"
+      - run : echo "${{github.head_ref  }}"
