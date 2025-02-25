@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 5000
 app.use(express.static('dist'))
 const gitCommand = 'git rev-parse HEAD'
 
+
+
 const childOut = execSync(gitCommand)
 const commit_hash = childOut.toString().trim()
 app.get('/version', async (req, res) => {
